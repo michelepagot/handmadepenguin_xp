@@ -56,7 +56,7 @@ jobs:
         echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
 
     - name: Install SDL2
-      run: >
+      run: |
         git clone https://github.com/libsdl-org/SDL.git -b SDL2
         cd SDL
         mkdir BUILD && cd BUILD

@@ -62,7 +62,7 @@ jobs:
         mkdir BUILD && cd BUILD
         cmake ..
         cmake --build .
-        sudo cmake --install .
+        cmake --install .
 
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory.

@@ -60,9 +60,10 @@ jobs:
         git clone https://github.com/libsdl-org/SDL.git -b SDL2
         cd SDL
         mkdir BUILD && cd BUILD
+        mkdir LOCAL_INSTALL
         cmake ..
         cmake --build .
-        cmake --install .
+        cmake --install . --prefix ./LOCAL_INSTALL
 
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory.

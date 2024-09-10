@@ -58,12 +58,12 @@ jobs:
     - name: Install SDL2
       run: |
         git clone https://github.com/libsdl-org/SDL.git -b SDL2
-        cd SDL
-        mkdir BUILD && cd BUILD
-        mkdir LOCAL_INSTALL
-        cmake ..
+        cd ${{ github.workspace }}/SDL
+        mkdir ${{ github.workspace }}/BUILD && cd ${{ github.workspace }}/BUILD
+        mkdir ${{ github.workspace }}/BUILD/LOCAL_INSTALL
+        cmake ${{ github.workspace }}/SDL
         cmake --build .
-        cmake --install . --prefix ./LOCAL_INSTALL
+        cmake --install . --prefix ${{ github.workspace }}/BUILD/LOCAL_INSTALL
 
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory.
@@ -74,6 +74,7 @@ jobs:
         -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
         -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
         -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+        -DCMAKE_PREFIX_PATH=${{ github.workspace }}/BUILD/LOCAL_INSTALL
         -S ${{ github.workspace }}
 
     - name: Build
